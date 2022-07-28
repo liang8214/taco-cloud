@@ -1,5 +1,6 @@
 package tacos.web;
 
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,11 +10,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 import tacos.Order;
+import tacos.User;
 
 @Slf4j
 @Controller
 @RequestMapping("/orders")
 public class OrderController {
+
+
+
+    @ManyToOne
+    private User user;
+
     @GetMapping("/current")
     public String orderForm(Model model) {
         model.addAttribute("order", new Order());
